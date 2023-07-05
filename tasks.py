@@ -74,38 +74,35 @@ def task_1(data_in):
     Add missing [year-month] with 0 if no items in data.
     ex. {
         '2020-03': 29,
-        '2020-04': 0, # created[year-month] does not occur in data
+        '2020-04': 0,
         '2020-05': 24
     }
     """
 
-    count_dict = collections.defaultdict(int)
     start_date = None
     end_date = None
-
-    created_date = [
-        datetime.datetime.strptime(item["created"], "%Y-%m-%dT%H:%M:%S")
-        for item in data_in["items"]
-    ]
+    count_dict = collections.defaultdict(int)
 
     for item in data_in["items"]:
-        created_date = datetime.datetime.strptime(item["created"], "%Y-%m-%dT%H:%M:%S")
-        year_month = created_date.strftime("%Y-%m")
-        count_dict[year_month] += 1
+        current_date = datetime.datetime.strptime(item["created"], "%Y-%m-%dT%H:%M:%S")
+        count_dict[current_date.strftime("%Y-%m")] += 1
 
-        if start_date is None or created_date < start_date:
-            start_date = created_date
-        if end_date is None or created_date > end_date:
-            end_date = created_date
+        if start_date is None or current_date < start_date:
+            start_date = current_date
+        if end_date is None or current_date > end_date:
+            end_date = current_date
 
-    if start_date is not None and end_date is not None:
-        current_date = datetime.datetime(start_date.year, start_date.month, 1)
-        while current_date <= end_date:
-            year_month = current_date.strftime("%Y-%m")
-            if year_month not in count_dict:
-                count_dict[year_month] = 0
-            current_date += datetime.timedelta(days=32)
-            current_date = datetime.datetime(current_date.year, current_date.month, 1)
+    current_date = datetime.datetime(
+        year=start_date.year, month=start_date.month, day=1
+    )
+    while current_date <= end_date:
+        year_month = current_date.strftime("%Y-%m")
+        if year_month not in count_dict:
+            count_dict[year_month] = 0
+        current_date += datetime.timedelta(days=32)
+        current_date = datetime.datetime(
+            year=current_date.year, month=current_date.month, day=1
+        )
 
     return count_dict
 
@@ -165,12 +162,12 @@ def task_3(data_in):
     total_days = 0
 
     for item in data_in["items"]:
-        if item["package"] in ["ENTERPRISE", "FLEXIBLE"]:
+        if item["package"] in ("ENTERPRISE", "FLEXIBLE"):
             for summary in item["summary"]:
                 period_date = datetime.datetime.strptime(summary["period"], "%Y-%m")
                 if three_months_ago <= period_date <= last_period_date:
-                    incomes = summary["documents"]["incomes"]
-                    expenses = summary["documents"]["expenses"]
+                    incomes = summary.get("documents", {}).get("incomes", 0)
+                    expenses = summary.get("documents", {}).get("expenses", 0)
                     total_documents += incomes + expenses
                     total_days += 1
 
