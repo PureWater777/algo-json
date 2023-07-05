@@ -65,12 +65,20 @@
 """
 import datetime
 import collections
-
-# TODO: check out itertools
 import itertools
 
 
 def task_1(data_in):
+    """
+    Return number of items per created[year-month].
+    Add missing [year-month] with 0 if no items in data.
+    ex. {
+        '2020-03': 29,
+        '2020-04': 0, # created[year-month] does not occur in data
+        '2020-05': 24
+    }
+    """
+
     count_dict = collections.defaultdict(int)
     start_date = None
     end_date = None
@@ -100,102 +108,6 @@ def task_1(data_in):
             current_date = datetime.datetime(current_date.year, current_date.month, 1)
 
     return count_dict
-
-
-# def task_1(data_in):
-#     count_dict = collections.defaultdict(int)
-#     for item in data_in["items"]:
-#         created_date = datetime.strptime(item["created"], "%Y-%m-%dT%H:%M:%S")
-#         year_month = created_date.strftime("%Y-%m")
-#         count_dict[year_month] += 1
-
-#     # Add missing [year-month] entries with a count of 0
-#     start_date = datetime.datetime.strptime("2019-12-01", "%Y-%m-%d")
-#     end_date = datetime.now()
-#     current_date = start_date
-#     while current_date < end_date:
-#         year_month = current_date.strftime("%Y-%m")
-#         if year_month not in count_dict:
-#             count_dict[year_month] = 0
-#         current_date = current_date + relativedelta(months=1)
-
-#     return count_dict
-
-
-# def task_1(data_in):
-#     """
-#     Return number of items per created[year-month].
-#     Add missing [year-month] with 0 if no items in data.
-#     ex. {
-#         '2020-03': 29,
-#         '2020-04': 0, # created[year-month] does not occur in data
-#         '2020-05': 24
-#     }
-#     """
-#     counts = collections.defaultdict(int)
-
-#     # Extract the "created" dates and convert them to datetime objects
-#     created_dates = [
-#         datetime.datetime.fromisoformat(item["created"]) for item in data_in["items"]
-#     ]
-
-#     # Find the earliest and latest dates
-#     start_date = min(created_dates)
-#     print(start_date)
-#     end_date = max(created_dates)
-#     print(end_date)
-
-#     # Iteration over the date range
-#     current_date = start_date
-#     while current_date <= end_date:
-#         current_year_and_month = current_date.strftime("%Y-%m")
-#         counts[current_year_and_month] += 1
-#         current_date += datetime.timedelta(days=1)
-
-#     # Addition of missing year-month pairs with the count of 0
-#     for date in created_dates:
-#         year_and_month = date.strftime("%Y-%m")
-#         counts[year_and_month] = counts.get(year_and_month, 0)
-
-#     return counts
-
-
-# def task_1(data_in):
-#     """
-#     Return number of items per created[year-month].
-#     Add missing [year-month] with 0 if no items in data.
-#     ex. {
-#         '2020-03': 29,
-#         '2020-04': 0, # created[year-month] does not occur in data
-#         '2020-05': 24
-#     }
-#     """
-#     # Estimated time: around 20 minutes
-#     counts = collections.defaultdict(int)
-
-#     # Iteration over provided .json file
-#     for item in data_in["items"]:
-#         created_date = datetime.datetime.fromisoformat(item["created"])
-#         year_and_month = created_date.strftime("%Y-%m")
-#         counts[year_and_month] += 1
-
-#     # Addition of missing year-month pairs with the count of 0
-#     # TODO: check if this is the earliest date, find the way to change month for the bigger dataset
-#     # Get last and first date
-
-#     # start_date = datetime.datetime.strptime("2019-12", "%Y-%m")
-#     created_dates = [item["created"] for item in data_in["items"]]
-#     start_date = datetime.datetime(min(created_dates))
-#     end_date = datetime.datetime(max(created_dates))
-#     current_date = start_date
-
-#     while current_date <= end_date:
-#         current_year_and_month = current_date.strftime("%Y-%m")
-#         if current_year_and_month not in counts:
-#             counts[current_year_and_month] = 0
-#         # TODO: fix iteration on months delta 30 ban definition
-#         current_date = current_date + datetime.timedelta(days=30)
-#     return counts
 
 
 def task_2(data_in):
@@ -241,7 +153,7 @@ def task_3(data_in):
     as one int
     ex. 64
     """
-    # Estimated time: 15min
+    # Estimated time: 20min
 
     last_period = max(
         summary["period"] for item in data_in["items"] for summary in item["summary"]
