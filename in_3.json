@@ -1,0 +1,112 @@
+{
+    "items": [
+      {
+        "package": "FLEXIBLE",
+        "created": "2020-01-25T00:00:00",
+        "summary": []
+      },
+      {
+        "package": "ENTERPRISE",
+        "created": "2020-01-05T00:00:00",
+        "summary": []
+      },
+      {
+        "package": "FLEXIBLE",
+        "created": "2019-12-27T00:00:00",
+        "summary": [
+          {
+            "period": "2020-03",
+            "documents": {
+              "incomes": 92,
+              "expenses": 71
+            }
+          }
+        ]
+      },
+      {
+        "package": "ENTERPRISE",
+        "created": "2020-01-11T00:00:00",
+        "summary": [
+          {
+            "period": "2020-03",
+            "documents": {
+              "incomes": 28,
+              "expenses": 18
+            }
+          },
+          {
+            "period": "2020-04",
+            "documents": {
+              "incomes": 40,
+              "expenses": 5
+            }
+          }
+        ]
+      },
+      {
+        "package": "FLEXIBLE",
+        "created": "2020-01-15T00:00:00",
+        "summary": [
+          {
+            "period": "2020-03",
+            "documents": {
+              "incomes": 39,
+              "expenses": 48
+            }
+          },
+          {
+            "period": "2020-04",
+            "documents": {
+              "incomes": 76,
+              "expenses": 20
+            }
+          }
+        ]
+      },
+      {
+        "package": "INTERNAL",
+        "created": "2020-01-07T00:00:00",
+        "summary": [
+          {
+            "period": "2019-12",
+            "documents": {
+              "incomes": 4,
+              "expenses": 53
+            }
+          },
+          {
+            "period": "2020-01",
+            "documents": {
+              "incomes": 60,
+              "expenses": 48
+            }
+          },
+          {
+            "period": "2020-02",
+            "documents": {
+              "incomes": 88,
+              "expenses": 85
+            }
+          },
+          {
+            "period": "2020-03",
+            "documents": {
+              "incomes": 84,
+              "expenses": 81
+            }
+          }
+        ]
+      },
+      {
+        "package": "ENTERPRISE",
+        "created": "2020-03-03T00:00:00",
+        "summary": [
+          {
+            "period": "2020-04",
+            "documents": {
+              "incomes": 27,
+              "expenses": 13
+            }
+          }
+        ]
+      }]}
