@@ -78,6 +78,7 @@ def task_1(data_in):
         '2020-05': 24
     }
     """
+    # Estimated time of task completion: 30min
 
     start_date = None
     end_date = None
@@ -124,7 +125,7 @@ def task_2(data_in):
         }
     }
     """
-    # Estimated time: 5min
+    # # Estimated time of task completion: 5min
 
     counts = collections.defaultdict(lambda: {"incomes": 0, "expenses": 0, "total": 0})
 
@@ -150,7 +151,7 @@ def task_3(data_in):
     as one int
     ex. 64
     """
-    # Estimated time: 20min
+    # Estimated time of task completion: 20min
 
     last_period = max(
         summary["period"] for item in data_in["items"] for summary in item["summary"]
